@@ -1,0 +1,67 @@
+/Courier findfont
+4 scalefont
+setfont
+newpath
+-30 10 moveto
+0
+0
+/count 0 def
+{
+    count 100 mod 0 eq
+    { 50 400 rmoveto } if
+    /count count 1 add def
+    (%stdin)(r)file =string readline
+    not { pop exit } if
+    dup currentpoint 3 -1 roll show moveto 0 -4 rmoveto
+    (,) search pop
+    [
+     exch
+     (-) search pop exch pop
+     cvi exch cvi
+    ]
+    /l exch def
+    pop
+    [
+     exch
+     (-) search pop exch pop
+     cvi exch cvi
+    ]
+    /r exch def
+    
+
+    l 0 get r 0 get le
+    r 1 get l 1 get le and
+    r 0 get l 0 get le
+    l 1 get r 1 get le and
+    or
+    { exch 1 add exch }
+    if
+
+    l 0 get r 0 get le
+    r 1 get l 1 get le and
+    r 0 get l 0 get le
+    l 1 get r 1 get le and
+    or
+    l 0 get r 0 get le
+    r 0 get l 1 get le and
+    or
+    l 0 get r 1 get le
+    r 1 get l 1 get le and
+    or
+    { 1 add } if
+} loop
+/intersections exch def
+/overlaps exch def
+
+/Courier findfont
+16 scalefont
+setfont
+
+20 600 moveto 
+(Part 1: total overlaps = ) show
+overlaps 20 string cvs show
+20 550 moveto 
+(Part 2: total intersections = ) show
+intersections 20 string cvs show
+
+showpage
