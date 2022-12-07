@@ -2,13 +2,16 @@ Solves the problem in postscript. PS is an esoteric language in which to solve
 a programming contest problem, and it is a dialect of forth, whose descendants
 are well-represented within the esolang community.
 
-You'll need a postscript engine. Fortunately, you have a lot of them! Unfortunately, the postscript engine you need also needs to be able to read stdin. Fortunately you have those too!
+You'll need a postscript engine. Fortunately, you have a lot of them!
+Unfortunately, the postscript engine you need also needs to be able to read
+stdin. Fortunately you have those too!
 
 	$ ps2pdf 4.ps < input.txt
 
 The answer will be written on the produced PDF, along with the input text. 
 
-If you have ghostscript installed (OSX, maybe; Linux, almost definitely), then you could also do:
+If you have ghostscript installed (OSX, maybe; Linux, almost definitely), then
+you could also do:
 
 	$ gs 4.ps < input.txt
 
