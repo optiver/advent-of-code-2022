@@ -1,30 +1,16 @@
-# Advent of Code 2022
+My submission for short code for day 18. It uses 163 bytes.
 
-Submit your challenge solutions here!
+Running:
+    cat <input_file> | python3 day18.py
 
-## Rules for participating
+Documentation:
+    l=[eval(f'[{s}]')for s in sys.stdin]
+This reads strings (s) from the input file into a list of voxels (3D pixels) of lava(l).
 
-1. Assignments will be published online on a Sunday with entries/solutions due by Wednesday 18:00 local time 
-2. Entry in the form of a Pull Request to the Optiver Github repo Advent of Code 2022 - Amsterdam Contest. 
-3. The code has to accept puzzle input in some documented way. 
-4. The code has to work / be reproducible for the judges - documentation please.
-5. The code has to complete within 5 minutes runtime.
-6. The jury judges on the Thursday, winner will be announced on Friday - the winner will be announced via e-mail. 
-7. Jurors are not allowed to participate in the contest.
-
-
-## Contest 1: Esolang
-
-Solve the **Dec 04** challenge in the most esoteric language
-
-## Contest 2: Obfuscation
-
-Solve the **Dec 11** challenge in the most obscure way possible
-
-Allowed languages: Python 3.9, C, C++
-
-## Contest 3: Code golf
-
-Solve the **Dec 18** challenge in the least amount of bytes possible
-
-**Note**:  has to compile / run with 'common available' compilers / runtimes on a "default" OS install of Ubuntu 22.10 or Windows 11.
+    print(sum(list(map(sum,zip(v,d)))not in l
+    for v in l
+    for d in[[0,0,1],[0,0,-1],[0,1,0],[0,-1,0],[1,0,0],[-1,0,0]]))
+This part 'for v in l for d in[[0,0,1],[0,0,-1],[0,1,0],[0,-1,0],[1,0,0],[-1,0,0]]' loops through the voxels (v) of the lava (l) and through the 6 directions (d).
+This part 'list(map(sum,zip(v,d)))' calculates the position of a neighbour given voxel (v) and direction(d).
+This part '... not in l' then checks if that neighbour is in the lava (l). If this is not true it means we found a surface with lava on one side and air on the other.
+This part 'print(sum(...))' sums those booleans and prints the count of surfaces we found.
