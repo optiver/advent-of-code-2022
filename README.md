@@ -1,12 +1,10 @@
-My submission for short code for day 18. It uses 152 bytes.
+My submission for short code for day 18. It uses 163 bytes.
 
 Running:
-It expects a file named 'i' with the input in the current directory.
-Run as
-    python day18.py
+    cat <input_file> | python3 day18.py
 
 Documentation:
-    l=[eval(f'[{s}]')for s in open('i')]
+    l=[eval(f'[{s}]')for s in sys.stdin]
 This reads strings (s) from the input file into a list of voxels (3D pixels) of lava(l).
 
     print(sum(list(map(sum,zip(v,d)))not in l
