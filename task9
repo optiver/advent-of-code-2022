@@ -1,0 +1,58 @@
+from argparse import ArgumentParser
+from pathlib import Path
+from typing import List, Union
+
+import numpy as np
+
+INPUT_PATH = "input.txt"
+
+
+def read_input(path_file: Union[str, Path]) -> List[List[int]]:
+    with open(path_file, "r") as f:
+        lines = f.readlines()
+        sequences = []
+        for line in lines:
+            seq_str = line.split(' ')
+            seq = list(map(int, seq_str))
+            sequences.append(seq)
+    return sequences
+
+
+def extrapolate_next(seq: List[int]):
+    # Next element is equal to sum of all last elements of sequences differences
+    seq = np.array(seq)
+    last_seq_elements = [seq[-1]]
+    while (seq != 0).any():
+        seq = np.diff(seq)
+        last_seq_elements.append(seq[-1])
+    total_last = sum(last_seq_elements)
+    return total_last
+
+
+def extrapolate_prev(seq: List[int]) -> int:
+    return extrapolate_next(seq[::-1])
+
+
+def get_sum_predictions(input_file: Path, predict_prev: bool = False) -> int:
+    total_sum = 0
+    sequences = read_input(input_file)
+    for seq in sequences:
+        if predict_prev:
+            prediction = extrapolate_prev(seq)
+        else:
+            prediction = extrapolate_next(seq)
+        total_sum += prediction
+    return total_sum
+
+
+def main():
+    parser = ArgumentParser()
+    parser.add_argument("--path_file", type=str, default=INPUT_PATH, help='Path to the input file')
+    p = parser.parse_args()
+    path_file = Path(p.path_file)
+
+    print(get_sum_predictions(path_file), get_sum_predictions(path_file, predict_prev=True))
+
+
+if __name__ == '__main__':
+    main()
