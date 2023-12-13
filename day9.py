@@ -38,7 +38,7 @@ def part_two(input_data: list[str]):
 
 
 if __name__ == '__main__':
-    with open("day8.txt") as f:
+    with open("day9.txt") as f:
         data = f.readlines()
     part_one(data)
     part_two(data)
